@@ -2,6 +2,34 @@
 	margin:0;
 	padding:0;
 }
-h1{
-	color:red;
+body{
+	width:100%;
+	height:auto;
+}
+
+
+/*   mainPage   */
+#mainPage{
+	margin:20px auto;
+	width:70%;
+	height:auto;
+	min-height:400px;
+}
+article{
+	display: inline-block;
+	float:left;
+	width:30%;
+	position:relative;
+	background-color:gray;
+	vertical-align: middle;
+}
+article:nth-child(2n){
+	background-color:white;
+}
+article:before{
+	content:"";
+	display:inline-block;
+	padding-bottom:100%;
+	vertical-align: middle;
+	width:.1px;
 }
