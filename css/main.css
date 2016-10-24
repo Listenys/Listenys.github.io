@@ -33,3 +33,23 @@ article:before{
 	vertical-align: middle;
 	width:.1px;
 }
+
+/*    homework    */
+header{
+	width:100%;
+	height:auto;
+	min-height:400px;
+	margin:0 auto;
+	position: relative;
+}
+	#picWall{
+		position: relative;
+		width:100%;
+		height:600px;	
+	}
+		#picWall img{
+			overflow: hidden;
+		}
+		#picWall .num{
+			display:none;
+		}
