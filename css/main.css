@@ -8,6 +8,7 @@ body{
 	min-width:800px;
 	height:auto;
 	font-family: 'Helvetica';
+	background:url('../images/index/bgbody.gif') repeat 0 0;
 }
 a{
 	text-decoration: none;
@@ -25,20 +26,14 @@ ul,li{
 	zoom:1;
 }
 
-#mainPage{
-	margin:20px auto;
-	width:100%;
-	height:auto;
-	min-height:400px;
-}
+
 /********** Header  mainPage   ************/
 	header.mainPage{
 		width:100%;
 		height:200px;
-		background:url(../images/index_header.jpg) no-repeat 0 -370px;
-	}
-	header.mainPage{
-		box-shadow: 0px 2px 2px #aaa;
+		background:url(../images/index/index_header.jpg) no-repeat 0 -370px;
+		zoom:200;
+		box-shadow: 0px 3px 6px #aaa;
 	}
 		header.mainPage nav{
 			width:50%;
@@ -62,6 +57,14 @@ ul,li{
 			text-align: center;
 			float:left;
 		}
+/**********  main mainPage   ***********/
+#mainPage{
+	margin:0 auto;
+	width:80%;
+	height:auto;
+	min-height:400px;
+	zoom:100;
+}
 /*************    homework    ****************/
 #homework header{
 	width:100%;
