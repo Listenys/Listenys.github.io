@@ -32,8 +32,8 @@ ul,li{
 		width:100%;
 		height:200px;
 		background:url(../images/index/index_header.jpg) no-repeat 0 -370px;
-		zoom:200;
-		box-shadow: 0px 3px 6px #aaa;
+		z-index:200;
+		box-shadow: 0px 1px 7px #392f41;
 	}
 		header.mainPage nav{
 			width:50%;
@@ -60,11 +60,18 @@ ul,li{
 /**********  main mainPage   ***********/
 #mainPage{
 	margin:0 auto;
+	background-color:white;
 	width:80%;
 	height:auto;
 	min-height:400px;
-	zoom:100;
+	z-index:100;
 }
+	#mainPage #calendar{
+		width:100%;
+		height:130px;
+		background-color:#bd2458;
+		zoom:50;
+	}
 /*************    homework    ****************/
 #homework header{
 	width:100%;
