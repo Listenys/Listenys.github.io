@@ -1,0 +1,87 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charest="utf-8">
+		<title>Animation</title>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#pre").click(function(){
+					$("#peace").removeClass("moveRgiht");
+					$("#peace").addClass("moveLeft");
+				});
+				$("#next").click(function(){
+					$("#peace").removeClass("moveLeft");
+					$("#peace").addClass("moveRgiht");
+				});
+			});
+		</script>
+		<style>
+			body{
+				margin:0;
+				padding:0;
+				width:100%;
+				height:auto;
+				min-height: 200px;
+			}
+			input{
+				width:80px;
+				height:40px;
+				background-color: #457383;
+				position: relative;
+				border: 0;
+				text-align: center;
+				padding:0;
+				cursor: pointer;
+			}
+			#peace{
+				position: relative;
+				width:100px;
+				height:180px;
+				margin:0 auto;
+				background-color: blue;
+				}
+			.moveLeft{
+				animation:moveleft 0.7s 1;
+				animation-fill-mode:forwards;
+				animation-timing-function:cubic-bezier(0.68,-0.25,0.265,1.25);
+				-webkit-animation:moveleft 0.7s 1;
+				-webkit-animation-fill-mode:forwards;
+				-webkit-animation-timing-function:cubic-bezier(0.68,-0.25,0.265,1.25);
+			}
+			.moveRight{
+				animation:moveright 0.7s 1;
+				animation-fill-mode:forwards;
+				animation-timing-function:cubic-bezier(0.68,-0.25,0.265,1.25);
+				-webkit-animation:moveRightight 0.7s 1;
+				-webkit-animation-fill-mode:forwards;
+				-webkit-animation-timing-function:cubic-bezier(0.68,-0.25,0.265,1.25);
+			}
+				@keyframes moveleft{
+					0%{left:0;opacity: 1;}
+					100%{left:-50%;opacity: 0;}
+				}
+				@-webkit-keyframes moveleft{
+					0%{left:0;opacity: 1;}
+					100%{left:-50%;opacity: 0;}
+				}
+				@keyframes moveright{
+					0%{left:-50%;opacity: 0;}
+					100%{left:0;opacity: 1;}
+				}
+				@-webkit-keyframes moveright{
+					0%{left:-50%;opacity: 0;}
+					100%{left:0;opacity: 1;}
+				}
+		</style>
+		
+	</head>
+	<body>
+		<div id="peace">
+		</div>
+		<div style="width:165px;height:50px;position:relative;margin:0 auto;text-align=center;line-height:50px;">
+			<input type="button" value="pre" id="pre" />
+			<input typt="button" value="next" id="next" />
+		</div>
+	</body>
+</html>
