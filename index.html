@@ -2,30 +2,47 @@
 <html>
 	<head>
 		<title>Now you see</title>
+		<link type="text/css" rel="stylesheet" href="css/index.css" />
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-		<style>
-			*{
-				margin:0;
-				padding:0;
-			}
-			body{
-				width:auto;
-				height:auto;
-			}
-			div{
-				margin:0 auto;
-				width:300px;
-				height:auto;
-				min-height: 200px;
-			}
-		</style>
 	</head>
 	<body>
-		<div>
-			<h1>
-				广告位招租
-			</h1>
+		<div id="firstLevel">
+			<div id="indexTime">
+				<div>
+					<p id="localTime">
+					<script type="text/javascript">
+						function fillZero(v){
+							if(v<10){
+								v = '0' + v;
+							}
+							return(v);
+
+						}
+						function showtime(){
+							var today = new Date();
+							var year = today.getFullYear();
+							var month = today.getMonth() + 1;
+							var day = today.getDate();
+							var hour = fillZero(today.getHours());
+							var minutes = fillZero(today.getMinutes());
+							var seconds = fillZero(today.getSeconds());
+							document.getElementById('localTime').innerHTML=year + "年" + month + "月" + day + "日 " + hour + ":" + minutes + ":" + seconds;
+						}
+						setInterval("showtime()",1000);
+					</script>
+				</p>
+				</div>
+			</div>
+			<div id="indexMain">
+				<div>
+					<a href="#">first</a>
+					<a href="#">first</a>
+					<a href="#">first</a>
+					<a href="#">first</a>
+					<a href="#">first</a>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
