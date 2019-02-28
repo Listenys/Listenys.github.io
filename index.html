@@ -34,7 +34,16 @@
 			}else{
 				fullday = 28;
 			}
-			var dayOffirstday =day + (fullday - today.getDate() + 1)%7;//算出当月1号是星期几
+
+			//算出当月1号是星期几
+			function firstday(todate,today){
+				let firstdate = todate + 7 - (today%7 -1);
+				if(firstdate > 7){
+					firstdate-=7;
+				}
+				return firstdate;
+			}
+			var dayOffirstday = firstday(day,todayDate);
 			//准备七个星期的数组，当月每天日期按星期分别放入数组
 			const SUN = ["SUN"];
 			const MON = ["MON"];

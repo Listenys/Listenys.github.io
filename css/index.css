@@ -34,8 +34,8 @@ ul,li{
 /* calendar   */
 #calendar{
 	position:absolute;
-	right:40%;
-	top:30%;
+	right:500px;
+	top:300px;
 	width:500px;
 	height:auto;
 	background:white;
@@ -52,6 +52,7 @@ ul,li{
 		float:left;
 	}
 	#calendar h2,h3{
+		font-family: Helvetica,sans-serif;
 		font-size:1.4rem;
 		color: #474747;
 		margin-right:10px;
