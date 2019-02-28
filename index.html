@@ -10,47 +10,21 @@
 		<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
 	</head>
 	<body>
-		<!--<div id="firstLevel">-->
-			<!--<div id="indexTime">-->
-				<!--<div>-->
-					<!--<p id="localTime">-->
-					<!--<script type="text/javascript">-->
-						<!--function fillZero(v){-->
-							<!--if(v<10){-->
-								<!--v = '0' + v;-->
-							<!--}-->
-							<!--return(v);-->
-
-						<!--}-->
-						<!--function showtime(){-->
-							<!--var today = new Date();-->
-							<!--var year = today.getFullYear();-->
-							<!--var month = today.getMonth() + 1;-->
-							<!--var day = today.getDate();-->
-							<!--var hour = fillZero(today.getHours());-->
-							<!--var minutes = fillZero(today.getMinutes());-->
-							<!--var seconds = fillZero(today.getSeconds());-->
-							<!--document.getElementById('localTime').innerHTML=year + "年" + month + "月" + day + "日 " + hour + ":" + minutes + ":" + seconds;-->
-						<!--}-->
-						<!--setInterval("showtime()",1000);-->
-					<!--</script>-->
-				<!--</p>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div id="indexMain">-->
-
-			<!--</div>-->
-		<!--</div>-->
 		<div id="calendar">
 			<h2>CALENDAR</h2>
 			<div id="week" class="clearfix"></div>
 		</div>
+
+		<!-- calendar -->
 		<script type="text/babel">
+			//准备需要的值，当天的日期、月份、年份以及星期几、当月天数
 			var today = new Date();
 			var year = today.getFullYear();
 			var month = today.getMonth() + 1;
 			var day = today.getDay();
 			var fullday = 31;
+			const todayDate = today.getDate();
+			//准备2月的闰年和非闰年天数
 			if(month == 4 || month == 6 || month == 9 || month == 11){
 				fullday = 30;
 			}else if(month == 2 && year%100 ==0 && year%400 == 0) {
@@ -60,7 +34,8 @@
 			}else{
 				fullday = 28;
 			}
-			var dayOffirstday =day + (fullday - today.getDate() + 1)%7;
+			var dayOffirstday =day + (fullday - today.getDate() + 1)%7;//算出当月1号是星期几
+			//准备七个星期的数组，当月每天日期按星期分别放入数组
 			const SUN = ["SUN"];
 			const MON = ["MON"];
 			const TUE = ["TUE"];
@@ -70,11 +45,15 @@
 			const SAT = ["SAT"];
 			const week = [SUN,MON,TUE,WED,THU,FRI,SAT];
 
+			//分日期进数组
+			//当月1号之前的星期数组放入空值，从1号开始放完第一周，记录号数的markDay累加1
 			var markDay = 1;
 			for(let i=0;i<7;i++){
 				if(i<dayOffirstday){week[i].push("");}
 				else{week[i].push(markDay);markDay++;}
 			}
+			//放入第二周的第一天，再加7放入第三周的第一天，直到超过当月天数为止。
+			//这里用一个块级变量做markDay的分身，当月的第一天放完后markDay才累加1开始放当月第二天，直到放完7天
 			for(let i=0;i<7;i++){
 				let x = markDay;
 				do{
@@ -83,9 +62,12 @@
 				}while(x<=fullday);
 				markDay++;
 			}
+			//最后一周最后一天之后的几天补空值
 			for(let i = today.getDay() + 1;i<7;i++){
 				week[i].push("");
 			}
+
+			//七个数组装填完毕，用map遍历每个数组添加<li>标签
 			var listday = new Array();
 			for(let i = 0;i < 7;i++){
 				let tempArr = week[i];
@@ -93,11 +75,13 @@
 				<li key={tempArr.toString()}>{tempArr}</li>
 			);
 			}
-
+			listday[day][(todayDate/7)+1] = <li class="todayDate">{todayDate}</li>;//标记当天
+			//用map遍历给七个数组添加<ul>标签
 			const listWeek = listday.map((listday) =>
 			<ul key={listday.toString()}>{listday}</ul>
 			);
 
+			//渲染到页面
 			const element = (
 					<div class="clearfix">
 						<h2>CALENDAR</h2>
@@ -105,11 +89,11 @@
 						<div id="week" class="clearfix">{listWeek}</div>
 					</div>
 			)
-
 			ReactDOM.render(
 					element,
 					document.getElementById('calendar')
 			);
 		</script>
+
 	</body>
 </html>
