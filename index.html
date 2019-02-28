@@ -5,44 +5,111 @@
 		<link type="text/css" rel="stylesheet" href="css/index.css" />
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
+		<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+		<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+		<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
 	</head>
 	<body>
-		<div id="firstLevel">
-			<div id="indexTime">
-				<div>
-					<p id="localTime">
-					<script type="text/javascript">
-						function fillZero(v){
-							if(v<10){
-								v = '0' + v;
-							}
-							return(v);
+		<!--<div id="firstLevel">-->
+			<!--<div id="indexTime">-->
+				<!--<div>-->
+					<!--<p id="localTime">-->
+					<!--<script type="text/javascript">-->
+						<!--function fillZero(v){-->
+							<!--if(v<10){-->
+								<!--v = '0' + v;-->
+							<!--}-->
+							<!--return(v);-->
 
-						}
-						function showtime(){
-							var today = new Date();
-							var year = today.getFullYear();
-							var month = today.getMonth() + 1;
-							var day = today.getDate();
-							var hour = fillZero(today.getHours());
-							var minutes = fillZero(today.getMinutes());
-							var seconds = fillZero(today.getSeconds());
-							document.getElementById('localTime').innerHTML=year + "年" + month + "月" + day + "日 " + hour + ":" + minutes + ":" + seconds;
-						}
-						setInterval("showtime()",1000);
-					</script>
-				</p>
-				</div>
-			</div>
-			<div id="indexMain">
-				<div>
-					<a href="#">first</a>
-					<a href="#">first</a>
-					<a href="#">first</a>
-					<a href="#">first</a>
-					<a href="#">first</a>
-				</div>
-			</div>
+						<!--}-->
+						<!--function showtime(){-->
+							<!--var today = new Date();-->
+							<!--var year = today.getFullYear();-->
+							<!--var month = today.getMonth() + 1;-->
+							<!--var day = today.getDate();-->
+							<!--var hour = fillZero(today.getHours());-->
+							<!--var minutes = fillZero(today.getMinutes());-->
+							<!--var seconds = fillZero(today.getSeconds());-->
+							<!--document.getElementById('localTime').innerHTML=year + "年" + month + "月" + day + "日 " + hour + ":" + minutes + ":" + seconds;-->
+						<!--}-->
+						<!--setInterval("showtime()",1000);-->
+					<!--</script>-->
+				<!--</p>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div id="indexMain">-->
+
+			<!--</div>-->
+		<!--</div>-->
+		<div id="calendar">
+			<h2>CALENDAR</h2>
+			<div id="week" class="clearfix"></div>
 		</div>
+		<script type="text/babel">
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = today.getMonth() + 1;
+			var day = today.getDay();
+			var fullday = 31;
+			if(month == 4 || month == 6 || month == 9 || month == 11){
+				fullday = 30;
+			}else if(month == 2 && year%100 ==0 && year%400 == 0) {
+				fullday = 29;
+			}else if(month == 2 && year%100 !=0 && year%4 == 0){
+				fullday = 29;
+			}else{
+				fullday = 28;
+			}
+			var dayOffirstday =day + (fullday - today.getDate() + 1)%7;
+			const SUN = ["SUN"];
+			const MON = ["MON"];
+			const TUE = ["TUE"];
+			const WED = ["WED"];
+			const THU = ["THU"];
+			const FRI = ["FRI"];
+			const SAT = ["SAT"];
+			const week = [SUN,MON,TUE,WED,THU,FRI,SAT];
+
+			var markDay = 1;
+			for(let i=0;i<7;i++){
+				if(i<dayOffirstday){week[i].push("");}
+				else{week[i].push(markDay);markDay++;}
+			}
+			for(let i=0;i<7;i++){
+				let x = markDay;
+				do{
+					week[i].push(x);
+					x+=7;
+				}while(x<=fullday);
+				markDay++;
+			}
+			for(let i = today.getDay() + 1;i<7;i++){
+				week[i].push("");
+			}
+			var listday = new Array();
+			for(let i = 0;i < 7;i++){
+				let tempArr = week[i];
+				listday[i] = tempArr.map((tempArr) =>
+				<li key={tempArr.toString()}>{tempArr}</li>
+			);
+			}
+
+			const listWeek = listday.map((listday) =>
+			<ul key={listday.toString()}>{listday}</ul>
+			);
+
+			const element = (
+					<div class="clearfix">
+						<h2>CALENDAR</h2>
+						<h3>{month} - {year}</h3>
+						<div id="week" class="clearfix">{listWeek}</div>
+					</div>
+			)
+
+			ReactDOM.render(
+					element,
+					document.getElementById('calendar')
+			);
+		</script>
 	</body>
 </html>
