@@ -31,7 +31,7 @@
 				fullday = 29;
 			}else if(month == 2 && year%100 !=0 && year%4 == 0){
 				fullday = 29;
-			}else{
+			}else if(month == 2){
 				fullday = 28;
 			}
 
@@ -72,19 +72,27 @@
 				markDay++;
 			}
 			//最后一周最后一天之后的几天补空值
-			for(let i = today.getDay() + 1;i<7;i++){
-				week[i].push("");
+			const lastMonday = week[0].length;
+			for(let i = 1;i<7;i++){
+				if(!week[i][lastMonday]){
+					week[i].push("");
+				}
 			}
 
 			//七个数组装填完毕，用map遍历每个数组添加<li>标签
 			var listday = new Array();
+			function pushli(num){
+				if(num == todayDate){
+					return <li key={num.toString()} class="todayDate">{num}</li>;//标记当天
+				}else{
+					return <li key={num.toString()}>{num}</li>
+				}
+			}
 			for(let i = 0;i < 7;i++){
 				let tempArr = week[i];
-				listday[i] = tempArr.map((tempArr) =>
-				<li key={tempArr.toString()}>{tempArr}</li>
-			);
+				listday[i] = tempArr.map(pushli);
 			}
-			listday[day][(todayDate/7)+1] = <li class="todayDate">{todayDate}</li>;//标记当天
+
 			//用map遍历给七个数组添加<ul>标签
 			const listWeek = listday.map((listday) =>
 			<ul key={listday.toString()}>{listday}</ul>
