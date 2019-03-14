@@ -105,4 +105,25 @@ ul,li{
 		opacity:0.7;
 	}
 
-/*  main  */
+/*  textBook  */
+#textBook{
+	position: fixed;
+	width:358px;
+	height:233px;
+	bottom:0;
+	left:350px;
+	background: url("../images/index/textBook.png");
+	background-size:100% 100%;
+	box-shadow:1px 11px 15px 2px #000000;
+}
+
+/*   caps    */
+#cap1{
+	position:fixed;
+	width:112px;
+	height:151px;
+	background:url("../images/index/cap1.png");
+	background-size:100% 100%;
+	left:100px;
+	top:400px;
+}
