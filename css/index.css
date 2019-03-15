@@ -118,12 +118,28 @@ ul,li{
 }
 
 /*   caps    */
-#cap1{
+#iphoneX{
 	position:fixed;
-	width:112px;
-	height:151px;
-	background:url("../images/index/cap1.png");
-	background-size:100% 100%;
+	width:130px;
+	height:264px;
 	left:100px;
 	top:400px;
+	z-index:99;
 }
+	#iphoneX span{
+		position:fixed;
+		float:left;
+		width:130px;
+		height:264px;
+		background:url("../images/index/iphonex.png");
+		background-size:100% 100%;
+		z-index:5;
+	}
+	#iphoneX img{
+		position:fixed;
+		width:124px;
+		height:260px;
+		margin:2px;
+		overflow:hidden;
+		z-index:2;
+	}
